@@ -1,1 +1,8 @@
+A discussion of how the project relates to the degree program of each student.
+There are several ways where this project relates to the field of Computer Systems Engineering. The system uses hardware and software to collect and store data. It is a real-time system where the software that is written will have to respond to multiple sources of input as well as interrupts for when certain thresholds are met. The application development and networking that was learned in class will be implemented into this project with an update system to an android phone. 
+A description of the method(s) you are going to use in solving the problem
 
+A proposed timetable for completion of the project including major intermediate milestones.
+A part of this projects deadlines are seasonal, due to the system being used primarily outside. The system must be tested in warm weather and cool weather separately, and will only be tested before the first snowfall, since that is when the honey collecting season stops. 
+We are looking to have the system itself built by mid-October, with the materials being bought by October 1st. This will allow us to have the time to test the system outside while working on the connection between the electrical data acquisition system and the data storage system at the same time.
+After the first snowfall, we will be working on the data storage and application development.
