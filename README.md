@@ -9,3 +9,6 @@ Project Proposal Draft:
 
 Project Schedule:
   This has the rough outline of all the deliverables and deadlines for the project.
+
+Three Lists:
+   This has what we want to do in the project, what we hope to do in the project, and what would be amazing, but can't do realistically in    the scope of this project.
