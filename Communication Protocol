@@ -1,1 +1,5 @@
 
+
+
+Packet style:
+[opcode][delimiter][hiveNumber][delimiter][hiveTemperature][delimiter][hiveHumidity][delimiter]
