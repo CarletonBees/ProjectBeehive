@@ -1,0 +1,80 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+//header javascript code + initialization of Google Charts Libraries	
+	
+		google.charts.load('current', {'packages':['line']}); //load charts and packages
+		google.charts.setOnLoadCallback(create_Chart); //Draw's chart when chart is loaded
+		google.charts.setOnLoadCallback(create_Chart2);
+
+      window.onmessage = (event) => {
+        if (event.data.trim() == "TempButtonClicked") {
+			document.getElementById('curve_chart').style.visibility = 'hidden';
+			receivedTemp = event.data;
+			respondTemp();
+        }
+
+		if (event.data.trim() == "HumidButtonClicked") {
+			document.getElementById('curve_chart').style.visibility = 'visible';
+			receivedHumid = event.data;
+			respondHumid();
+        }
+      };
+	  
+	  function respondTemp(){
+	  window.parent.postMessage(receivedTemp, "*");
+	  }
+	  
+	  function respondHumid(){
+	  window.parent.postMessage(receivedHumid, "*");
+	  }
+	  
+	  
+    function create_Chart() {
+      var chartData = new google.visualization.DataTable();
+      chartData.addColumn('string', 'Day');
+      chartData.addColumn('number', 'Humidity');
+      chartData.addRows([
+        ['1',  37.8],
+        ['2',  30.9],
+        ['3',  25.4],
+        ['4',  11.7],
+      ]);
+      var options = {
+        title: ' Humidity Values ',
+		legend: {position: 'none'}
+      };
+	  //Instantiate and draw the chart
+      var chart = new google.charts.Line(document.getElementById('curve_chart'));
+      chart.draw(chartData, google.charts.Line.convertOptions(options));
+    }
+	
+	function create_Chart2() {
+      var chartData2 = new google.visualization.DataTable();
+      chartData2.addColumn('string', 'Day');
+      chartData2.addColumn('number', 'Humidity');
+      chartData2.addRows([
+        ['1',  37.8],
+        ['2',  30.9],
+        ['3',  25.4],
+        ['4',  11.7],
+      ]);
+      var options = {
+        title: ' Humidity Values ',
+		legend: {position: 'none'}
+      };
+	  //Instantiate and draw the chart
+      var chart2 = new google.charts.Line(document.getElementById('curve_chart2'));
+      chart2.draw(chartData, google.charts.Line.convertOptions(options));
+    }
+	
+	
+//footer javascript code	
+  </script>
+</head>
+<body>
+     <div id= "curve_chart" style="width: 550px; height: 250px"></div>
+	 <div id= "curve_chart2" style="width: 550px; height: 250px"></div>
+</body>
+</html>
