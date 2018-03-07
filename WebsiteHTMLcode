@@ -9,14 +9,32 @@
 		google.charts.setOnLoadCallback(create_Chart2);
 
       window.onmessage = (event) => {
-        if (event.data.trim() == "TempButtonClicked") {
+	  
+		//TURN ON HUMIDITY CHART
+		if (event.data.trim() == "HumidButtonClicked") {
+			document.getElementById('curve_chart').style.visibility = 'visible';
+			receivedHumid = event.data;
+			respondHumid();
+        }
+		
+		//TURN OFF HUMIDITY CHART
+        if (event.data.trim() == "TurnOffHumidChart") {
 			document.getElementById('curve_chart').style.visibility = 'hidden';
 			receivedTemp = event.data;
 			respondTemp();
         }
 
-		if (event.data.trim() == "HumidButtonClicked") {
-			document.getElementById('curve_chart').style.visibility = 'visible';
+	
+		//TURN ON TEMPERATURE CHART
+		if (event.data.trim() == "TempButtonClicked") {
+			document.getElementById('create_Chart2').style.visibility = 'visible';
+			receivedHumid = event.data;
+			respondHumid();
+        }
+		
+		//TURN OFF TEMPERATURE CHART
+		if (event.data.trim() == "TurnOffTempChart") {
+			document.getElementById('create_Chart2').style.visibility = 'hidden';
 			receivedHumid = event.data;
 			respondHumid();
         }
@@ -53,20 +71,20 @@
 	function create_Chart2() {
       var chartData2 = new google.visualization.DataTable();
       chartData2.addColumn('string', 'Day');
-      chartData2.addColumn('number', 'Humidity');
+      chartData2.addColumn('number', 'Temperature');
       chartData2.addRows([
-        ['1',  37.8],
-        ['2',  30.9],
-        ['3',  25.4],
-        ['4',  11.7],
+        ['1',  10],
+        ['2',  11],
+        ['3',  12],
+        ['4',  11],
       ]);
       var options = {
-        title: ' Humidity Values ',
+        title: ' Temperature Values ',
 		legend: {position: 'none'}
       };
 	  //Instantiate and draw the chart
-      var chart2 = new google.charts.Line(document.getElementById('curve_chart2'));
-      chart2.draw(chartData, google.charts.Line.convertOptions(options));
+      var chart2 = new google.charts.Line(document.getElementById('create_Chart2'));
+      chart2.draw(chartData2, google.charts.Line.convertOptions(options));
     }
 	
 	
@@ -74,7 +92,7 @@
   </script>
 </head>
 <body>
-     <div id= "curve_chart" style="width: 550px; height: 250px"></div>
-	 <div id= "curve_chart2" style="width: 550px; height: 250px"></div>
+     <div id= "curve_chart" style="width: 450px; height: 200px"></div>
+	 <div id= "create_Chart2" style="width: 450px; height: 200px"></div>
 </body>
 </html>
