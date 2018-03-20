@@ -3,96 +3,73 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 //header javascript code + initialization of Google Charts Libraries	
-	
-		google.charts.load('current', {'packages':['line']}); //load charts and packages
-		google.charts.setOnLoadCallback(create_Chart); //Draw's chart when chart is loaded
-		google.charts.setOnLoadCallback(create_Chart2);
+		google.charts.load('current', {'packages':['corechart']}); //load charts and packages
+		google.charts.setOnLoadCallback(CreateHumidChart); //Draws Humidity chart when chart is loaded
+		google.charts.setOnLoadCallback(CreateTempChart); //Draws Humidity chart when chart is loaded
+	    
+	window.onmessage = (event) => {
+		if (event.data.trim() == "Update") {
+			CreateHumidChart();
+			CreateTempChart();
+        }
+    };
 
-      window.onmessage = (event) => {
-	  
-		//TURN ON HUMIDITY CHART
-		if (event.data.trim() == "HumidButtonClicked") {
-			document.getElementById('curve_chart').style.visibility = 'visible';
-			receivedHumid = event.data;
-			respondHumid();
-        }
-		
-		//TURN OFF HUMIDITY CHART
-        if (event.data.trim() == "TurnOffHumidChart") {
-			document.getElementById('curve_chart').style.visibility = 'hidden';
-			receivedTemp = event.data;
-			respondTemp();
-        }
-
+	//Query of url for humidity values
+    function CreateHumidChart() {
+      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/192PI2xfYmpF3hQNbOFuJOV0LnDJKKGkCJyiFe698RU0/gviz/tq?sheet=Sheet3&headers=1&range=A:B');
+      query.send(handleHUMIDSampleDataQueryResponse);
+    }
 	
-		//TURN ON TEMPERATURE CHART
-		if (event.data.trim() == "TempButtonClicked") {
-			document.getElementById('create_Chart2').style.visibility = 'visible';
-			receivedHumid = event.data;
-			respondHumid();
-        }
-		
-		//TURN OFF TEMPERATURE CHART
-		if (event.data.trim() == "TurnOffTempChart") {
-			document.getElementById('create_Chart2').style.visibility = 'hidden';
-			receivedHumid = event.data;
-			respondHumid();
-        }
-      };
-	  
-	  function respondTemp(){
-	  window.parent.postMessage(receivedTemp, "*");
-	  }
-	  
-	  function respondHumid(){
-	  window.parent.postMessage(receivedHumid, "*");
-	  }
-	  
-	  
-    function create_Chart() {
-      var chartData = new google.visualization.DataTable();
-      chartData.addColumn('string', 'Day');
-      chartData.addColumn('number', 'Humidity');
-      chartData.addRows([
-        ['1',  37.8],
-        ['2',  30.9],
-        ['3',  25.4],
-        ['4',  11.7],
-      ]);
-      var options = {
+	//Query of url for temperature values
+
+	//Response to humidity query with chart creation
+    function handleHUMIDSampleDataQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+    }
+	 var options = {
         title: ' Humidity Values ',
-		legend: {position: 'none'}
+		legend: {position: 'none'},
+		vAxis: {format:'0.00'},
+		//xAxis: {format:'00:00'}
       };
-	  //Instantiate and draw the chart
-      var chart = new google.charts.Line(document.getElementById('curve_chart'));
-      chart.draw(chartData, google.charts.Line.convertOptions(options));
+      var data = response.getDataTable();
+      var chart = new google.visualization.LineChart(document.getElementById('humid_chart_div'));
+      chart.draw(data, options);
+    }
+
+	//TEMPCHART
+	function CreateTempChart() {
+      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/192PI2xfYmpF3hQNbOFuJOV0LnDJKKGkCJyiFe698RU0/gviz/tq?sheet=Sheet4&headers=1&range=A:B');
+      query.send(handleTEMPSampleDataQueryResponse);
     }
 	
-	function create_Chart2() {
-      var chartData2 = new google.visualization.DataTable();
-      chartData2.addColumn('string', 'Day');
-      chartData2.addColumn('number', 'Temperature');
-      chartData2.addRows([
-        ['1',  10],
-        ['2',  11],
-        ['3',  12],
-        ['4',  11],
-      ]);
-      var options = {
-        title: ' Temperature Values ',
-		legend: {position: 'none'}
-      };
-	  //Instantiate and draw the chart
-      var chart2 = new google.charts.Line(document.getElementById('create_Chart2'));
-      chart2.draw(chartData2, google.charts.Line.convertOptions(options));
+	//Query of url for temperature values
+
+	//Response to humidity query with chart creation
+    function handleTEMPSampleDataQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
     }
-	
+	 var options = {
+        title: ' Temeprature Values ',
+		legend: {position: 'none'},
+		vAxis: {format:'0.00'},
+		//xAxis: {format:'00:00'}
+      };
+      var data = response.getDataTable();
+      var chart = new google.visualization.LineChart(document.getElementById('temp_chart_div'));
+      chart.draw(data, options);
+    }
 	
 //footer javascript code	
   </script>
 </head>
 <body>
-     <div id= "curve_chart" style="width: 450px; height: 200px"></div>
-	 <div id= "create_Chart2" style="width: 450px; height: 200px"></div>
+     <div id= "humid_chart_div" style="width: 440px; height: 300px"></div>
+     <div id= "temp_chart_div" style="width: 440px; height: 300px"></div>
+
 </body>
 </html>
