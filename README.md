@@ -2,18 +2,18 @@
 Fourth Year Project
 
 
-Files and how they break down:
+The url below provides link to a Google Drive. The Google Drive contains latest copies of the following projct documents;
++ Project Proposal
++ Progress Report
++ Oral Presentation Slide Show
++ Final Report by Adam Berg
++ Various Files (hive data, pictures, drafts of documents, and so forth)
 
-Project Proposal Draft:
-  This is where we write and draft our project proposal. No code here, but the general idea of the project and method is here
 
-Project Schedule:
-  This has the rough outline of all the deliverables and deadlines for the project.
 
-Three Lists:
-   This has what we want to do in the project, what we hope to do in the project, and what would be amazing, but can't do realistically in    the scope of this project.
 
-Java files:
+
+Android Applciation Folder:
   These are the files for the Android Application.
   BeePacket:
     This is how the App stores the information from the Packets
