@@ -14,7 +14,7 @@ The Google Drive contains latest copies of the following project documents;
 + Final Report by Adam Berg
 + Various Files (hive data, pictures, drafts of documents, and so forth)
 
-The url below provies link to the Google Sheets database.
+The url below provides link to the Google Sheets database.
 
 https://docs.google.com/spreadsheets/d/192PI2xfYmpF3hQNbOFuJOV0LnDJKKGkCJyiFe698RU0/edit?usp=sharing
 
