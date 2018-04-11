@@ -1,0 +1,73 @@
+import {local} from 'wix-storage';
+import wixLocation from 'wix-location';
+
+$w.onReady(function () {
+	let which_hive = local.getItem("1"); 
+	$w("#html1").postMessage(which_hive);
+	$w("#UpdateButton").label = "Re-Update ";
+	$w("#html1").onMessage( (event) => {
+			$w("#UpdateButton").label = "Displaying " + event.data;
+	});
+
+ 		
+});
+
+export function UpdateButton_click() {
+	let which_hive = local.getItem("1"); 
+	$w("#html1").postMessage(which_hive);
+}
+
+
+export function LoadData_click() {
+	//wixLocation.to("https://docs.google.com/spreadsheets/d/192PI2xfYmpF3hQNbOFuJOV0LnDJKKGkCJyiFe698RU0/edit?usp=sharing");
+}
+
+export function DurationButton_Click() {
+	let buttonLabel = $w("#Duration").label;
+	let hive_num = local.getItem("1");
+	if(buttonLabel === "48"){
+		if(hive_num === "hive1"){
+			$w("#html1").postMessage("duration_hive1");
+			$w("#Duration").label = "all";
+			return;
+		}
+		if(hive_num === "hive2"){
+			$w("#html1").postMessage("duration_hive2");
+			$w("#Duration").label = "all";
+			return;
+		}
+		if(hive_num === "hive3"){
+			$w("#html1").postMessage("duration_hive3");
+			$w("#Duration").label = "all";
+			return;
+		}
+		if(hive_num === "hive4"){
+			$w("#html1").postMessage("duration_hive4");
+			$w("#Duration").label = "all";
+			return;
+		}
+	}
+	if(buttonLabel === "all"){
+		if(hive_num === "hive1"){
+			$w("#html1").postMessage("duration_hive1");
+			$w("#Duration").label = "48";
+			return;
+		}
+		if(hive_num === "hive2"){
+			$w("#html1").postMessage("duration_hive2");
+			$w("#Duration").label = "48";
+			return;
+		}
+		if(hive_num === "hive3"){
+			$w("#html1").postMessage("duration_hive3");
+			$w("#Duration").label = "48";
+			return;
+		}
+		if(hive_num === "hive4"){
+			$w("#html1").postMessage("duration_hive4");
+			$w("#Duration").label = "48";
+			return;
+		}
+	}
+
+}
