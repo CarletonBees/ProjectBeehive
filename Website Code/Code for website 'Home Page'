@@ -1,0 +1,33 @@
+// For full API documentation, including code examples, visit http://wix.to/94BuAAs
+import wixLocation from 'wix-location';
+import {local} from 'wix-storage';
+
+$w.onReady(function () {
+	let url = wixLocation.url;
+	
+	$w("#table1").onCellSelect( (event, $w) => {
+		let cellData = event.cellData;
+		local.setItem("1", cellData);
+		wixLocation.to("/hivedata");
+	} );
+});
+
+
+/*
+export function AddHive_click() {
+  		$w.onReady( () => {
+  			$w("#dataset1").onReady( () => {
+    			let count = $w("#dataset1").getTotalCount();
+    			$w("#dataset1").setCurrentItemIndex(count);
+    			$w("#dataset1").new();
+    			$w("#dataset1").setFieldValues( {
+  					"title":  ("hive"+(count+1)),
+  					"id":   (count + 1)
+				} );
+				$w("#dataset1").save()
+  
+			} );
+  		} );
+}
+
+*/
