@@ -10,7 +10,7 @@ The Google Drive contains latest copies of the following projct documents;
 + Project Proposal
 + Progress Report
 + Oral Presentation Slide Show
-+ Poster Fair Demo (**Modified to a slideshow presentation due to strike**)
++ Poster Fair Demo (* *Modified to a slideshow presentation due to strike* *)
 + Final Report by Adam Berg
 + Various Files (hive data, pictures, drafts of documents, and so forth)
 
